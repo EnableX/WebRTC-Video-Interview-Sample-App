@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <title>Video Conference - Powered by EnableX</title>
+  <link rel="shortcut icon" href="../img/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/minimal/minimal.css" />
+  <link rel="stylesheet" href="../assets/plugins/bootstrap4/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/plugins/themify-icons/themify-icons.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+  <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+  <link href="../css/sweetalert.css" rel="stylesheet" />
+  <script src="../js/sweetalert.js"></script>
+  <link rel="stylesheet" href="../css/core.css" />
+</head>
+
+<body class="img-cover" style="overflow: hidden;">
+  <div id="overlay" style="display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;">
+    <div class="loader" style="width: 50px;">
+      <img src="../img/loading.gif" />
+    </div>
+    <h3 id="wait-msg" class="py-4"></h3>
+  </div>
+  <div class="logout_div">
+    <i class="fa fa-power-off"></i>
+    <span>
+      Logout
+    </span>
+  </div>
+
+  <div class="information_divs container" style="display: none;">
+    <div class="sign-form">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 px-3">
+          <div class="box b-a-0" style="padding-bottom: 20px;">
+            <div class="p-2 text-xs-center">
+              <img src="../img/digi-logo.png" style="max-width: 70%;" />
+            </div>
+            <div class="" style="margin-top: 25x; text-align: center;">
+              <p style="font-size: large;" id="wait-msg"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" id="call_container_div">
+    <div class="call-top-header">
+      <div class="logo" style="padding-top: 8px;">
+        <!-- <img src="../img/enableX_logo.png" style="max-width: 160px;" /> -->
+      </div>
+      <!-- <div class="duration">00:00</div> -->
+      <div class="recording-blink" style="display: none;">
+        <div id="rec_notification-1" class="blink-image">
+          <span><i class="fa fa-circle" style="color: red;"></i></span> Rec
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 px-0 mx-0"
+      style="display: flex;flex-direction:column;height: calc(100vh - 60px);margin-top: 60px;">
+
+      <div class="candidate big-view">
+        <div id="show_stream_div" style="display:block!important;"></div>
+
+        <div class="toolbar-buttons">
+          <div class="tools">
+            <div class="mute-icon" title="Mute/Unmute Audio" style="cursor: pointer;">
+              <i class="fa fa-microphone" id="self_aMute"></i>
+            </div>
+            <div class="video-mute-icon" title="Mute/Unmute Video" style="cursor: pointer;">
+              <i class="fa fa-video" id="self_vMute"></i>
+            </div>
+            <div class="video-mute-icon" id="share_screen_btn" title="Start Share" style="cursor: pointer;">
+              <i class="fa fa-desktop fa-fw SSicon" onClick="screenShare()"></i>
+            </div>
+            <div class="video-mute-icon" id="toggle_chat" title="Chat" style="cursor: pointer; position: relative;">
+              <i class="fas fa-comment-dots fa-fw CBicon" onClick="toggleChat()"></i>
+              <span class="tag tag-danger top" id="chat-tag" style="display: none; left: 25px;">&nbsp;</span>
+            </div>
+            <div class="video-mute-icon" title="End Call" style="cursor: pointer; background: red;">
+              <i class="fas fa-phone fa-fw CBicon" id="disconnect_call" style="margin-left: -20px;"></i>
+            </div>
+            <div class="video-mute-icon" id="settings" title="Settings" style="cursor: pointer;">
+              <div class="btn-group dropup">
+                <i class="fas fa-ellipsis-v" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu p-0 m-0">
+                  <div class="dropdown-item">
+                    <div id="enable_stats">
+                      <input type="checkbox" value="true" id="enable_stat" onchange="enable_stats();" />
+                      Enable Stats
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="all-streams px-5">
+        <!-- Self stream -->
+        <div class="self-view-parent">
+          <div id="self-view"></div>
+          <div class="self-name"></div>
+        </div>
+        <!-- / Self stream -->
+
+        <div id="call_div"></div>
+
+      </div>
+
+      <!-- Chat section -->
+      <div id="chat_window-popup">
+        <div class="card" id="chat_container">
+          <div class="card-header text-uppercase"><b>Chat</b></div>
+          <div class="items-list">
+            <div id="frame">
+              <div class="content" id="chat-window">
+                <div class="messages">
+                  <ul class="chat-message" id="chat-message"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-block">
+            <textarea class="form-control" name="" id="chat-text-area" onkeyup="sendChat(event)"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- / Chat section -->
+
+    </div>
+  </div>
+
+  <script>
+    var server_url = ""; // socket url
+    const searchParams = new URLSearchParams(window.location.search);
+    console.log('searchParams: ', searchParams)
+
+    const user_data = {
+      candidate: searchParams.get("candidate"),
+      candidate_id: searchParams.get("candidate_id"),
+      job_id: searchParams.get("job_id"),
+      job: searchParams.get("job"),
+      service: server_url
+    };
+
+    console.log(user_data);
+
+  </script>
+  <!-- Vendor JS -->
+  <script type="text/javascript" src="../assets/plugins/jquery/jquery-1.12.3.min.js"></script>
+  <script type="text/javascript" src="../assets/plugins/tether/js/tether.min.js"></script>
+  <script type="text/javascript" src="../assets/plugins/bootstrap4/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../assets/plugins/toastr/toastr.min.js"></script>
+  <script type="text/javascript" src="../assets/plugins/jscrollpane/jquery.mousewheel.js"></script>
+  <script type="text/javascript" src="../assets/plugins/jscrollpane/mwheelIntent.js"></script>
+  <script type="text/javascript" src="../js/scrollbar.js"></script>
+  <script type="text/javascript" src="../js/icheck.js"></script>
+  <script type="text/javascript" src="../js/error.js"></script>
+  <script type="text/javascript" src="../js/EnxRtc.js"></script>
+  <script type="text/javascript" src="../js/moment.min.js"></script>
+  <script type="text/javascript" src="../js/device-selection.js"></script>
+  <script type="text/javascript" src="../js/socket.io.js"></script>
+  <script type="text/javascript" src="../js/util.js"></script>
+  <script type="text/javascript" src="../js/customer.js"></script>
+</body>
+
+</html>

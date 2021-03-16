@@ -1,0 +1,28 @@
+{
+  "name": "ntuc",
+  "version": "1.0.0",
+  "description": "demo node server for ntuc",
+  "main": "server/server.js",
+  "start": "server/server.js",
+  "dependencies": {
+    "btoa": "^1.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.3",
+    "http-auth": "^3.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "log4js": "^2.8.0",
+    "morgan": "^1.9.0",
+    "nodemon": "^2.0.7",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://dipjay.d@bitbucket.vcloudx.lan:7990/bitbucket/scm/vcx-apps/ntuc.git"
+  },
+  "author": "dipjay.d@vcloudx.com",
+  "license": "ISC"
+}

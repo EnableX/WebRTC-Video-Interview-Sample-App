@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panasonic</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body style="background: #051867;">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-md-8 offset-md-2 pt-5 mt-5 text-center"
+          style="background: #4565f6;"
+        >
+          <div
+            class="jumbotron jumbotron-fluid"
+            style="
+              background-color: #4565f6;
+              border-radius: 0.3rem;
+              color: #fff;
+            "
+          >
+            <div class="container">
+              <h1 class="display-4 text-center">Panasonic</h1>
+
+              <p class="lead">
+                Enrich your lifestyle with latest products from Panasonic, which
+                offers a wide range of Televisions, Home Appliances & Consumer
+                Electronics in India.
+              </p>
+              <hr class="my-4" />
+              <p>
+                Get connected to our Representatives Product Showcase
+              </p>
+              <div id="talk_to_agent"></div>
+              <!-- <a class="btn btn-success btn-lg" href="#" role="button">Talk to Agent</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../js/EnxDa.js"></script>
+    <script>
+      var DA = new EnxDa();
+      const callData = {
+        customer: "Panasonic Customer 1",
+        customer_id: Math.floor(Math.random() * Math.floor(999999)),
+        stall: "Panasonic",
+        stall_id: 6628631,
+        license: null,
+        service: "https://cc-digi.enablex.io",
+        btn: {
+          id: "talk_to_agent",
+          label: "Talk to Agent",
+          class: "btn btn-success btn-lg",
+        },
+      };
+      DA.clickToCall(callData);
+    </script>
+  </body>
+</html>

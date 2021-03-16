@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LG</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body style="background: #051867;">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-md-8 offset-md-2 pt-5 mt-5 text-center"
+          style="background: #4565f6;"
+        >
+          <div
+            class="jumbotron jumbotron-fluid"
+            style="
+              background-color: #4565f6;
+              border-radius: 0.3rem;
+              color: #fff;
+            "
+          >
+            <div class="container">
+              <h1 class="display-4 text-center mb-4">LG</h1>
+              <a
+                class="btn btn-success btn-lg"
+                href="#"
+                role="button"
+                onclick="joinAgent(agentData)"
+                > Start Receiving Calls</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../../jwt.js"></script>
+    <script src="../../agent.js"></script>
+    <script>
+      const agentData = {
+        agent: "LG Agent 2",
+        agent_id: Math.floor(Math.random() * Math.floor(999999)),
+        stall: "LG",
+        stall_id: "6628632",
+        room_id: "5f11c0042ec81b8ded238c3c",
+        license: "av",
+        expiry: null,
+      };
+    </script>
+  </body>
+</html>

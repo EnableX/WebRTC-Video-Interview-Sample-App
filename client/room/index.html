@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <title> Video Conference - Powered by EnableX</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <link rel="shortcut icon" href="../img/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/plugins/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/plugins/animate.css/animate.min.css">
+    <link rel="stylesheet" href="../assets/plugins/waves/waves.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/minimal/minimal.css">
+    <link rel="stylesheet" href="../css/jquery-confirm.min.css">
+    <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/core.css">
+    <link rel="stylesheet" href="../css/joinedRoom.css"/>
+
+</head>
+<body class="fixed-sidebar fixed-header fixed-footer skin-default">
+<div class="wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <!-- Sidebar -->
+    <div class="site-overlay"></div>
+    <div class="site-sidebar">
+        <div class="custom-scroll custom-scroll-light">
+            <ul class="sidebar-menu" id="first_sidebar">
+                <li>
+                    <a href="#" class="">
+                        <!--<span class="s-icon"><i class="" id="user-icon" style="color:white;"></i></span>-->
+                        <span id="user-name-div" class="s-text"></span>
+
+                    </a>
+                </li>
+                <li>
+                    <div id="local_div" style="height: 166px !important;"></div>
+                </li>
+                <li class="menu-title">Participants</li>
+            </ul>
+            <ul class="sidebar-menu" id="second_sidebar">
+
+                <li ng-app="userJoinListApp">
+                    <div id="attendance-layout" ng-controller="userJoinListController">
+                        <div ng-include="attendanceTemplate.url"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="sidebar-menu" id="third_sidebar">
+                <li style="position:fixed ; bottom:0;">
+                    <a class="nav-link b-r-0" href="https://www.enablex.io/"  target="_blank" style="border-left: none !important;">&copy; <script>document.write(new Date().getFullYear())</script> vCloudX Pte.
+                        Ltd.</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <!-- Sidebar second -->
+    <div class=" site-sidebar-second ">
+        <!--<div id="vcx-chat-container" class="vcx_chat_container">-->
+        <div class="sidebar-chat-window animated fadeIn" style="display: block;">
+            <div class="d-flex flex-column">
+            <div class="scw-header clearfix">
+                <div class="float-xs-left">
+                    <strong>Chat</strong>
+
+                </div>
+                <div class="float-xs-left email-chat">
+                    <i class="far fa-envelope email-chat-script" style="cursor: pointer">
+                        <div style="display: none;" id="email-chat-details"></div>
+                    </i>
+                </div>
+                <div class="float-xs-right">
+                    <i class="ti-arrow-right hide-chat" style="cursor: pointer"></i>
+
+                </div>
+            </div>
+                <div class="chat-list-container">
+                    <div class="chat ">
+                        <div id="chat" style="width:330px;">
+
+                        </div>
+                    </div>
+                </div>
+            <div class="scw-form">
+                <form>
+                    <input class="form-control" id="chat-text-area" type="text" placeholder="Type..."
+                           onkeyup="sendChat(event)">
+                </form>
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Template options -->
+    <div class="template-options">
+        <div class="to-toggle bg-0275d8 text-white" id="settings_panel" title="Settings" ><i class="ti-settings"></i></div>
+        <div class="custom-scroll custom-scroll-dark">
+            <div class="scw-header clearfix">
+                <div class="float-xs-left">
+                    <strong>Settings</strong>
+                </div>
+            </div>
+
+            <div class="settings-tab">
+                <form>
+                    <div class="row setting-heading">
+                        <div class="col-sm-12">
+                            <h5>Switch Devices</h5>
+                        </div>
+                    </div>
+                    <div class="dvc_selection">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-video fa-fw"></i></div>
+                                <select id="cam" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-microphone fa-fw"></i></div>
+                                <select id="mic" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row ">
+
+                            <div class="col-sm-10 col-xs-10" style="text-align: left">
+                                <button id="btn-device-apply" class="btn btn-success w-min-md">
+                                    Apply
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="dropdown-divider mar-top"></div>
+
+                <form>
+                    <div class="row setting-heading">
+                        <div class="col-sm-12">
+                            <h5> Participants on Screen </h5>
+                        </div>
+                    </div>
+                    <div class="at_selection">
+                        <div class="row">
+                            <div class="col-sm-9 col-xs-9">
+                                <select id="selected" class="at_options form-control"
+                                        style="width:100%; height: 35px;">
+                                </select>
+
+                            </div>
+                            <div class="col-sm-3 col-xs-3">
+                                <button id="btn-at-selection-apply"
+                                        class="btn btn-success w-min-xs"
+                                        onclick="setActiveTalker('selected')">
+                                    Apply
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                <div class="dropdown-divider  mar-top"></div>
+                <form>
+
+                    <div class="row setting-heading">
+                        <div class="col-sm-12">
+                            <h5>Receive Video Quality</h5>
+                        </div>
+                    </div>
+                    <div class="quality_selection">
+
+                        <div class="row ">
+                            <div class="col-sm-9 col-xs-9">
+                                <select id="video-quality" class="form-control" style="width:100%;height: 35px;">
+                                </select>
+                            </div>
+                            <div class="col-sm-3 col-xs-3">
+                                <button id="btn-quality-selection-apply"
+                                        class="btn btn-success w-min-xs"
+                                        onclick="setReceiveVideoQuality('video-quality')">
+                                    Apply
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="site-header">
+        <nav class="navbar navbar-light">
+            <div class="navbar-left">
+                <a class="navbar-brand" href="https://www.enablex.io/" target="_blank">
+                    <div class="logo"></div>
+                </a>
+                <div class="toggle-button dark sidebar-toggle-first float-xs-left hidden-md-up">
+                    <span class="hamburger"></span>
+                </div>
+                <div class="toggle-button dark float-xs-right hidden-md-up" data-toggle="collapse"
+                     data-target="#collapse-1">
+                    <span class="more"></span>
+                </div>
+            </div>
+            <div class="navbar-right navbar-toggleable-sm collapse" id="collapse-1">
+                <div class="toggle-button light sidebar-toggle-second float-xs-left hidden-sm-down">
+                    <span class="hamburger"></span>
+                </div>
+
+                <ul class="nav navbar-nav float-md-right">
+
+
+                    <li class="nav-item pad-top-18" id="rec-notification" style=" display: none;">
+                        <i class="fa fa-circle blink-image" style="color:red;"><span
+                                style="font-family:Titillium Web;font-size: 16px;padding-left: 5px;text-transform: uppercase;line-height: 25px;">Rec</span></i>
+                    </li>
+                    <li class="nav-item pad-top-18">
+                        <label><i class="far fa-clock"></i></label>
+                        <label id="duration-label" style="font-weight: bold;">00:00:00</label>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <span class="vcx_bar text-danger" id="exit_meeting" title="Sign Out" onclick="hangUp()"><i class="fa fa-power-off mr-0-5"></i>Sign Out</span>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="nav-item hidden-sm-down">
+                        <a class="nav-link toggle-fullscreen" href="#">
+                            <i class="ti-fullscreen"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item pad-top-18"><h4 class="meeting-title"></h4></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="site-content">
+        <!-- Content -->
+        <div class="content-area py-1">
+            <div class="container-fluid">
+                <div class="only-par-msg alert alert-danger-fill alert-dismissible  fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4>Please wait for other participants to join! </h4>
+                </div>
+                <div class="watermark text-center">
+                    <img class="img-fluid" id="water-mark-image" src="../img/water-mark.png">
+                </div>
+                <div class="confo-container">
+                    <div id="layout_manager">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+
+            <!-------------- for mob--------------------->
+            <nav class="nav nav-1 border-top-gray">
+                <div class="row no-gutter">
+                    <div class="col-xs-12">
+                        <span class="nav-link pad-20-30" id="audio_mute_btn" title="Mute" onclick="audioMute()"><span><i
+                                class="fa fa-microphone fa-fw"></i></span><br>Mute</span>
+                        <span class="nav-link pad-20-30" id="video_mute_btn" title="Stop" onclick="videoMute();"><span><i
+                                class="fa fa-video fa-fw"></i></span><br>Stop</span>
+                        <span class="nav-link pad-20-30" id="share_screen_btn" title="Start Share" onclick="screenShare();"><span><i
+                                class="fa fa-desktop fa-fw"></i></span><br>Share</span>
+                        <span class="nav-link pad-20-30 toggle-button-second" id="chat_btn" title="Chat"><span><i
+                                class="far fa-comments fa-fw "></i><span class="tag tag-danger top" id="chat-tag">0</span></span><br>Chat</span>
+                        <span class="nav-link pad-20-30" id="recording_btn" title="Start Record" onclick="startRoomRec();"><span><i
+                                class="fa fa-circle fa-fw"></i></span><br><div id="record_text">Record</div></span>
+                        <span class="nav-link pad-20-30" id="mute_all" title="Mute All" onclick="muteUnmuteAll();"><span><i
+                                class="fa fa-microphone fa-fw "></i></span><br>Mute All</span>
+                        <span class="nav-link pad-20-30" id="invite_btn" title="Invite"><span><i
+                                class="far fa-envelope fa-fw"></i></span><br>Invite</span>
+                        <span class="nav-link pad-20-30" id="feedback_btn" title="Feedback"><span><i
+                                class="far fa-edit fa-fw"></i></span><br>Feedback</span>
+
+                    </div>
+                </div>
+            </nav>
+
+        </footer>
+
+    </div>
+
+</div>
+<div class="modal fade" id="invite-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #0275d8;color: #fff;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff"><span
+                        aria-hidden="true">&times;</span>
+
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Send Invite</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="m-item">
+                    <div class="invite_msg col-sm-12" style="text-align: center;">
+                        You may invite new participants to join your ongoing Conference using the following form:
+                    </div>
+
+                    <div class="invite_selection">
+                        <div class="row padd">
+                            <div class="col-sm-8">
+                                <input id="invite-email" class="form-control" type="text"
+                                       placeholder="Enter Email Address"
+                                       style="width: 100%;height: 35px;"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="btn-invite" class="btn btn-success w-min-md">Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="email-chat-dialog" tabindex="-1" role="dialog" aria-labelledby="email-chat-dialog"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #0275d8;color: #fff;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff"><span
+                        aria-hidden="true">&times;</span>
+
+                </button>
+                <h4 class="modal-title" id="chat-dialog-label">Send Chat Transcript</h4>
+
+            </div>
+            <div class="modal-body">
+                <div class="m-item">
+                    <div class="invite_msg col-sm-12">
+                        Send Chat Transcript to:
+                    </div>
+
+                    <div class="invite_selection">
+                        <div class="row padd">
+                            <div class="col-sm-8">
+                                <input id="send-chat-email" class="form-control" type="text"
+                                       placeholder="Enter Email Address"
+                                       style="width: 100%;height: 35px;"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="btn-send-chat" class="btn btn-success w-min-md">Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="feedback-dialog" tabindex="-1" role="dialog" aria-labelledby="feedbackLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #0275d8;color: #fff;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff"><span
+                        aria-hidden="true">&times;</span>
+
+                </button>
+                <h4 class="modal-title" id="feedbackLabel">Your Feedback</h4>
+            </div>
+            <div class="modal-body">
+                <div class="m-item">
+                    <!--<div class="invite_msg col-sm-12" style="text-align: center;">-->
+                    <!--You may invite new participants to join your ongoing Conference using the following form:-->
+                    <!--</div>-->
+                    <div class="feedback_form ">
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <strong>How is your Call ?</strong>
+                            </div>
+                            <div class='col-sm-12 form-group'>
+                                <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="form-group col-sm-12 display-flex" id="attach_log_check">
+                                <input type="checkbox" id="attach_logs" class="icheck" checked> <label for="attach_logs" class="text-black"
+                                                                                                      style="padding-left: 10px;">Attach Browser Console Log for qaulity diagnosis</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group"><strong>Audio Issues</strong></div>
+                                    <div class="form-group  display-flex">
+                                        <input type="checkbox" id="audio_not_present" class="icheck" > <label for="audio_not_present" class="text-black"
+                                                                                                             style="padding-left: 10px;">I cannot hear anyone</label>
+                                    </div>
+                                    <div class="form-group  display-flex" >
+                                        <input type="checkbox" id="audio_was_bad" class="icheck" > <label for="audio_was_bad" class="text-black"
+                                                                                                         style="padding-left: 10px;">Poor Audio Quality</label>
+                                    </div>
+
+                                    <div class="form-group  display-flex" >
+                                        <input type="checkbox" id="other_participant_not_hear_me" class="icheck" > <label for="other_participant_not_hear_me" class="text-black"
+                                                                                                                         style="padding-left: 10px;">Others cannot hear me</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group"><strong>Video Issues</strong></div>
+                                    <div class="form-group  display-flex">
+                                        <input type="checkbox" id="video_not_present" class="icheck" > <label for="video_not_present" class="text-black"
+                                                                                                             style="padding-left: 10px;">I cannot see anyone</label>
+                                    </div>
+                                    <div class="form-group  display-flex" >
+                                        <input type="checkbox" id="video_is_bad" class="icheck" > <label for="video_is_bad" class="text-black"
+                                                                                                        style="padding-left: 10px;">Poor Video quality </label>
+                                    </div>
+                                    <div class="form-group  display-flex" >
+                                        <input type="checkbox" id="other_participant_not_see_me" class="icheck" > <label for="other_participant_not_see_me" class="text-black"
+                                                                                                                        style="padding-left: 10px;">Others cannot see me</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class=" form-group col-sm-12 text-center" style="margin-top:20px;">
+                                <button id="send_feedback" class="btn btn-success w-min-md">Send
+                                </button>
+                                <button id="cancel_feedback" class="btn btn-danger w-min-md">Cancel
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="extension-dialog" tabindex="-1" role="dialog" aria-labelledby="extensionLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width: 450px;">
+        <div class="modal-content" >
+            <div class="modal-header" style="background: #0275d8;color: #fff;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff"><span
+                        aria-hidden="true">&times;</span>
+
+                </button>
+                <h4 class="modal-title" id="extensionLabel">Install Screen Share Extension</h4>
+            </div>
+            <div class="modal-body">
+                <p>If You haven't downloaded the screen share extension.</p>
+                Click <a target="_blank"
+                         href='https://chrome.google.com/webstore/detail/vcloudx-screen-sharing/apedaiecomcfkjdjbnkfcdafaikkdkeo'>here</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Vendor JS -->
+<script type="text/javascript" src="../assets/plugins/jquery/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/tether/js/tether.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/bootstrap4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/detectmobilebrowser/detectmobilebrowser.js"></script>
+<script type="text/javascript" src="../assets/plugins/jscrollpane/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="../assets/plugins/jscrollpane/mwheelIntent.js"></script>
+<script type="text/javascript" src="../assets/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../js/icheck.js"></script>
+<script type="text/javascript" src="../assets/plugins/jquery-fullscreen-plugin/jquery.fullscreen-min.js"></script>
+<script type="text/javascript" src="../js/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="../js/angular.min.js"></script>
+<script type="text/javascript" src="../js/EnxRtc.js"></script>
+<script type="text/javascript" src="../js/moment.min.js"></script>
+<script type="text/javascript" src="../util/logger/Logger.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+<script type="text/javascript" src="../js/error.js"></script>
+<script type="text/javascript" src="../js/layout-master.js"></script>
+<script type="text/javascript" src="../js/layout-manager.js"></script>
+<script type="text/javascript" src="../js/joinedRoom.js"></script>
+<script type="text/javascript" src="../js/RoomLayout.js"></script>
+<script type="text/javascript" src="../js/settings.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
+<script type="text/javascript" src="../js/scrollbar.js"></script>
+</body>
+</html>

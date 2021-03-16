@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <title> Video Conference - Powered by EnableX</title>
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/minimal/minimal.css">
+    <link rel="stylesheet" href="../assets/plugins/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../css/core.css">
+</head>
+<body class="img-cover">
+<div class="container" id="option_container">
+    <div class="sign-form">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 px-3">
+                <div class="box b-a-0" style="padding-bottom: 20px;">
+                    <div class="p-2 text-xs-center">
+                        <img src="../img/enablex.png" style="max-width: 70%"/>
+                    </div>
+                    <div class="form-group"  >
+                        <div class="input-group text-lg-center">
+                            <h3>Preferences</h3>
+
+                        </div>
+                    </div>
+                    <div class=" padd-80 form-group" id="media-device-permission-error">
+                        <div class="alert alert-danger-fill alert-dismissible fade in mb-0" role="alert">
+                            <h3><strong>Device Access Denied!</strong></h3>
+                            <p>You may not be able to use this App without access to media devices.</p>
+                            <h6><strong>Hint: </strong>Allow Device Access </h6>
+                        </div>
+                    </div>
+                    <div class=" padd-80 form-group" id="unsupported_browser_message">
+                        <div class="alert alert-danger-fill alert-dismissible fade in mb-0" role="alert">
+                            <h3><strong>Unsupported Browser!</strong></h3>
+                            <p>Please use Mozilla firefox , Safari or Google Chrome.</p>
+
+                        </div>
+                    </div>
+                    <form class="padd-80" id="login_form" style="margin-top:20px;">
+
+                        <div class="form-group" >
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-video-camera fa-fw"></i></div>
+                                <select id="cam"class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-microphone fa-fw"></i></div>
+                                <select id="mic" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" id="video_layer_container" >
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-bar fa-fw"></i></div>
+                                <select id="video-layers" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group text-black">
+                           <strong>Choose Departments</strong>
+                        </div>
+                        <div class="form-group" id="checkbox_dpt" >
+
+                        </div>
+                        <div class="form-group">
+                            You will  receives calls for these departments
+                        </div>
+                        <div class="form-group join-button" style="margin-top:30px;">
+                            <button id="call_options_agent" class="btn btn-danger w-min-md"  type="button">Get Started
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h5 class="copy_text join-button">&copy; vCloudX Pte Ltd. All Rights Reserved.</h5>
+<!-- Vendor JS -->
+<script type="text/javascript" src="../assets/plugins/jquery/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/tether/js/tether.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/bootstrap4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../js/icheck.js"></script>
+<script type="text/javascript" src="../js/error.js"></script>
+<script type="text/javascript" src="../js/EnxRtc.js"></script>
+<script type="text/javascript" src="../js/device-selection.js"></script>
+<script type="text/javascript" src="../js/socket.io.js"></script>
+<script type="text/javascript" src="../js/agent.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+</body>
+</html>

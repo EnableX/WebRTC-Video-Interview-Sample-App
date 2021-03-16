@@ -1,0 +1,845 @@
+video{
+    object-fit: cover;
+}
+#local_div video
+{
+    object-fit: contain;
+}
+.vcx_toolbar_auto > div{
+    display: none;
+}
+.vcx_toolbar_auto:hover > div {
+    display: block;
+}
+.player_username{
+    position: absolute;
+    height: 50px;
+    width: 100px;
+    z-index: 5;
+    color: #fff;
+    font-family: cursive;
+    font-weight: bold;
+    padding: 10px;
+}
+body{
+    /*background: #000;*/
+    font: 14px 'Titillium Web' !important;
+}
+.header{
+    height: 50px;
+}
+.header-bg-brand{
+    height: inherit;
+    background: #fff;
+}
+.header-bg-menu{
+    height: inherit;
+    background: #212032;
+    display: table;
+}
+.header-bg-menu div{
+    display: table-cell;
+    vertical-align: middle;
+}
+.menu-container i {
+    float: right;
+}
+.header-bg-account{
+    height: inherit;
+    background: #504f5d;
+    border-left: 1px solid #fff;
+    color: #fff;
+    display: table;
+    font-size: 16px;
+}
+.header-bg-account div{
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+.confo-container{
+    background: #212032;
+    /*margin: 18px 0px 0px 0px;*/
+    overflow-y: auto;
+}
+.info-container{
+    background: #333333;
+    height: 100vh;
+}
+.icon-circle{
+    margin: 3px;
+    cursor: pointer;
+    color: #fff;
+    background: #000;
+    border-radius: 25px;
+    padding: 10px;
+    border: 2px solid #734343;
+    transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    /*transition: font-size 0.5s;
+    -moz-transition: font-size 0.5s;*/
+}
+.vcx_bar{
+    cursor: pointer;
+}
+.icon-circle:hover{
+    background-color :#330f0f;
+    /*font-size: 18px;*/
+}
+.brand-logo{
+    height: 49px;
+    background: #fff;
+}
+.user-name{
+    color: #fff;
+    font-size: 16px;
+    word-break: break-all;
+}
+
+.attendance-user-name{
+    color: #fff;
+    font-size: 12px;
+}
+.attendance-user-type{
+    font-size: 12px;
+    color: #7f7dad;
+}
+.icon-info{
+    font-size: 25px;
+    color: #7f7dad;
+}
+.cus_img_icon{
+    width: 2%;
+    margin: 3px 43px 0px 5px;
+    cursor: pointer;
+}
+.vcx_end_meeting{
+
+    background: #ec3f38;
+    border-radius: unset !important;
+    margin: 6px 0px 0px 0px;
+    position: absolute;
+    right: 25px;
+    padding:5px;
+}
+.local-menu{
+    padding-bottom: 30px;
+}
+.local-menu i{
+    cursor: pointer;
+}
+
+/* Rating Star Widgets Style */
+#stars {
+    list-style-type:none;
+    padding:0;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+}
+#stars  > li.star {
+    display:inline-block;
+
+}
+
+/* Idle State of the stars */
+#stars > li.star > i.fa {
+    font-size:2em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+#stars > li.star.hover > i.fa {
+    color:#FFCC36;
+}
+
+/* Selected state of the stars */
+#stars > li.star.selected > i.fa {
+    color:#FF912C;
+}
+.text-center
+{
+    text-align: center;
+}
+/* Firefox old*/
+@-moz-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* IE */
+@-ms-keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+/* Opera and prob css3 final iteration */
+@keyframes blink {
+    0% {
+        opacity:1;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+.blink-image {
+    -moz-animation: blink normal 2s infinite ease-in-out; /* Firefox */
+    -webkit-animation: blink normal 2s infinite ease-in-out; /* Webkit */
+    -ms-animation: blink normal 2s infinite ease-in-out; /* IE */
+    animation: blink normal 2s infinite ease-in-out; /* Opera and prob css3 final iteration */
+}
+
+.icon-control-view{
+    color: #fff;
+    position: absolute;
+    z-index: 7;
+    border:1px solid #fff;
+    padding: 5px;
+    margin-left: -15px;
+    bottom: 83px;
+    background: #000;
+    cursor: pointer;
+}
+
+.icon_nav_hide{
+    color: #fff;
+    position: absolute;
+    right: 0px;
+    border: 1px solid #fff;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+.icon_nav_show {
+    color: #fff;
+    position: absolute;
+    left: 0px;
+    border: 1px solid #fff;
+    padding: 5px;
+    z-index: 4;
+    background: #000;
+    cursor: pointer;
+    display: none;
+}
+.vcx_chat_container{
+    width: 100%;
+    background: #fff;
+    right: 0;
+    height:100%;
+    position: absolute;
+    bottom: 41px;
+
+    /*width: 100%;*/
+    /*background: #fff;*/
+    /*right: 0;*/
+    /*height: 100%;*/
+    /*position: absolute;*/
+}
+.stream-max-icon{
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+    background: rgb(50,50,50);
+    width: 2%;
+    cursor: pointer;
+    padding: 4px;
+}
+.fullScreen{
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10000 !important;
+    left:0 !important;
+}
+.btn-device-apply
+{
+    background-color: #0275d8 !important;
+    border-color: #0275d8 !important;
+    height: 35px;
+    padding: 0px;
+    width: 27%;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+}
+.jc-bs3-container.container {
+    text-align: center !important;
+}
+.btn-at-selection-apply
+{
+    background-color: #0275d8 !important;
+    border-color:#0275d8 !important;
+    height: 35px;
+    padding: 0px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+}
+.btn-quality-selection-apply
+{
+    background-color: #0275d8 !important;
+    border-color: #0275d8 !important;
+    height: 35px;
+    padding: 0px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+}
+.btn-invite-apply
+{
+    background-color: #0275d8 !important;
+    border-color: #0275d8 !important;
+    height: 35px;
+    padding: 0px;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+
+}
+.padd-sm{
+    margin: 20px;
+}
+.padd{
+    margin: 10px;
+}
+.vcx_footer{
+    bottom: 0px;
+    position: fixed;
+    z-index: 5;
+    height: 20px;
+    width: 100%;
+    border-radius: 0px;
+    background-color: #534367;
+    padding: 0px;
+    color: #212032;
+    text-align: center;
+    margin-left: -15px;
+}
+.vcx_toolbar_main{
+    display: block;
+    bottom: 0px;
+    position: fixed;
+    z-index: 5;
+    height: 45px;
+    width: 100%;
+    border-radius: 0px;
+    background-color: #333333;
+    padding: 1px;
+    color: #212032;
+    text-align: center;
+    margin-left:0px;
+    border-top: 1px solid #fff;
+    left: 0;
+}
+textarea{
+    resize: none;
+}
+.vcx_loader_container{
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background: #000;
+    opacity: 0.8;
+    text-align: center;
+}
+.vcx_loader_container img{
+    height: 50px;
+    width: 50px;
+}
+.vcx_loader_container div{
+    padding-top: 25%;
+}
+.vcx_footer_copyright{
+
+    font-size: 13px;
+    color: #ccc;
+
+    margin-top: 16px;
+    margin-left: 0;
+    display: block;
+    text-align: left;
+}
+.confo_logo{
+    width: 75%;
+    margin: 25px 5px 10px 5px;
+}
+small.chat_username{
+    color: #212032;
+}
+.chat-container{
+    display: none;
+    z-index: 1000;
+    float: right;
+}
+.vcx_chat_container .mytext{
+    border: 0;
+    background: #e0e0de;
+    width: 100%;
+    position: relative;
+    bottom: 20px;
+    right: 0;
+/*}*/
+    /*border: 0;*/
+    /*background: #e0e0de;*/
+    /*width: 100%;*/
+    /*position: absolute;*/
+    /*bottom: 79px;*/
+    /*right: 0;*/
+}
+.vcx_chat_container .text{
+    width:100%;display:flex;flex-direction:column;
+}
+.vcx_chat_container .text > p:first-of-type{
+    width:100%;margin-top:0;margin-bottom:auto;line-height: 13px;font-size: 12px;
+}
+.vcx_chat_container .text > p:last-of-type{
+    width:100%;text-align:right;color:silver;margin-bottom:-7px;margin-top:auto;
+}
+.vcx_chat_container .text-l{
+    float:left;padding-right:10px;
+}
+.vcx_chat_container .text-r{
+    float:right;
+}
+.vcx_chat_container p{
+    margin: 0px !important;
+}
+.vcx_chat_container .avatar{
+    display:none;
+    justify-content:center;
+    align-items:center;
+    width:25%;
+    float:left;
+    padding-right:10px;
+}
+.vcx_chat_container .avatar img{
+    width: 40px !important;
+    height: 40px;
+}
+.vcx_chat_container .macro{
+    margin-top:5px;
+    width:80%;
+    border-radius:5px;
+    padding:5px;
+    display:block;
+    border: 1px solid #d8d8d8;
+}
+.vcx_chat_container .msj-rta{
+    float:right;
+    background:#ffffff;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+.vcx_chat_container .msj{
+    float:left;background:white;
+}
+.vcx_chat_container .frame{
+    height: 63vh;
+    overflow: hidden;
+    padding: 0;
+    /*height:96%;*/
+    /*overflow:hidden;*/
+    /*padding:0;*/
+}
+.vcx_chat_container .frame > div:last-of-type{
+    width: 100%;
+    display: flex;
+    background: #212330;
+    padding: 20px 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+}
+.vcx_chat_container ul {
+    width:100%;
+    list-style-type: none;
+    /*background:#e0e0de;*/
+    padding:18px;
+    bottom:47px;
+    display:block;
+    flex-direction: column;
+    top:0;
+    overflow-y:auto;
+    height: 83%;
+}
+.add-bottom-margin{
+    margin-bottom: 5px;
+}
+.icon-hangup{
+    color: #f00;
+    margin: 3px;
+    cursor: pointer;
+    color: #fff;
+    background: #f00;
+    border-radius: 25px;
+    padding: 10px;
+    border: 2px solid #734343;
+    transition: background-color 1s;
+    -moz-transition: background-color 1s;
+    transform: rotate(135deg);
+}
+#local_div video{
+    transform: scaleX(-1);
+}
+.only-par-msg{
+    display: none;
+    text-align: center;
+    color: #fff;
+}
+.btn-mute-all{
+    display: none;
+    font-size: 11px;
+    padding: 3px 6px 3px 6px;
+}
+
+.chat-notify:after {
+    content: "1";position: absolute;font-size: 9px;margin-left: 3px;margin-top: -14px;padding: 2px;background: #f00;border-radius: 6px;
+}
+#layout_manager {
+    position: absolute;
+}
+#second_sidebar{
+    border-bottom: 1px solid #ffffff1f;
+}
+
+#layout_manager > div {
+    background-color: #000;
+    display: inline-block;
+    border: 1px solid #fff;
+    transition-property: all;
+    transition-duration: 0.5s;
+    /*overflow:hidden !important;*/
+}
+
+.stream-title{
+    position: absolute;
+    z-index: 5;
+    padding: 5px;
+    color: #fff;
+    background: rgba(50,50,50,0.5);
+}
+object{
+    width: 100% !important;
+    height: inherit !important;
+}
+#media-denied-info p{
+    text-align: center;
+}
+a:hover, a:active, a:focus
+{
+    text-decoration: none !important;
+}
+
+.dvc_selection
+{
+    margin-top:20px;
+    padding: 0 20px;
+}
+.dvc_msg
+{
+    margin-top:30px;
+    margin-bottom: 20px;
+}
+
+.at_selection
+{
+    margin-top: 10px;
+    padding: 0 20px;
+}
+.at_msg
+{
+    margin-top:30px;
+    margin-bottom: 20px;
+}
+
+.quality_selection
+{
+    margin-top: 10px;
+    padding: 0 20px;
+}
+.quality_msg
+{
+    margin-top: 10px;
+    padding: 0 20px;
+
+}
+.invite_selection
+{
+    margin-top:20px;
+}
+.invite_msg
+{
+    margin-bottom: 20px;
+}
+.close
+{
+    color:white;
+    opacity: inherit !important;
+;
+}
+.setting-heading
+{
+    text-align: left;
+    padding: 0 20px;
+
+}
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    width:55%;
+}
+/*.modal-body{*/
+    /*max-height: 400px;*/
+    /*min-height: 400px;*/
+    /*overflow: hidden;*/
+/*}*/
+
+ul.icon-li{ list-style: none;    display: flex;align-items: center;justify-content: center;}
+ul.icon-li li {float: left; margin:8px 35px;}
+
+ul.icon-li li .cus_img_icon {
+    width: 26px!important;    margin: 0;
+}
+
+
+.attendance-card > a{
+    display: block;
+    position: relative;
+    padding:  0.45rem 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.menu-title{
+    margin-top:20px;
+}
+.footer-icons
+{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat{
+    margin:0  9px;
+
+}
+/*.scw-item::before {*/
+    /*font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f007";*/
+    /*border-radius: 50%;*/
+    /*margin-right: 8px;*/
+    /*padding: 7px;*/
+
+    /*border: 1px solid #333;*/
+/*}*/
+/*.scw-item .self::before {*/
+    /*font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f508";*/
+    /*border-radius: 50%;*/
+    /*margin-right: 8px;*/
+    /*padding: 7px;*/
+
+    /*border: 1px solid #333;*/
+/*}*/
+.fa-clock
+{
+    padding-right: 5px;
+    font-size: 16px;
+}
+#duration-label
+{
+    font-weight: 500;
+    font-size: 16px;
+    color: #000
+}
+h4.meeting-title
+{
+    color: #000!important;
+    text-transform: uppercase;
+    font-weight: normal !important;
+}
+button >.fa-video,button >.fa-video-slash, button >.fa-microphone,button >.fa-microphone-slash,button >.fa-desktop{
+    background:#602d91;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    box-shadow: 0px 0px 5px 1px #9a8f8f;
+}
+button > .fa-circle,button > .fa-pause{
+    color: #fff;
+    background:#602d91;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    box-shadow: 0px 0px 5px 1px #9a8f8f;
+}
+.name-title{    background: transparent!important;
+    color: #666!important;
+    font-size: 13px!important;
+    text-align: right!important;
+    display: inline-block!important;}
+.name-title-left{    background: transparent!important;
+    color: #666!important;
+    font-size: 13px!important;
+    text-align: left!important;
+    display: inline-block!important;}
+#back2Top
+{
+    width: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    z-index: 999;
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    bottom: 2px;
+    right: 5px;
+    color:#ed1c24;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    font-size: 39px;
+}
+.fa-chevron-circle-up{
+    color:#fff !important;
+}
+.mar-top
+{
+    margin : 1.5rem 0 !important;
+}
+#chat-tag{
+    /*position: relative !important;*/
+    /*top: -15px !important;*/
+    /*margin-left: -9px !important;*/
+    /*font-size: 80% !important;*/
+    /*min-width: 20px !important;*/
+    /*display: initial;*/
+    /*padding: 0.25em 0.5em !important;*/
+    /*font-size: 57% !important;*/
+    /*font-weight: 600 !important;*/
+    /*line-height: 1;*/
+    /*color: #fff;*/
+    /*border-radius: 50% !important;*/
+    position: absolute;
+    top: 5px !important;
+    margin-left: -3px !important;
+    font-size: 80% !important;
+    /* min-width: 20px !important; */
+    display: inline-block;
+    padding: 4px 2px;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    line-height: 1;
+    color: #fff;
+    border-radius: 50% !important;
+}
+/*#attach_log_check{*/
+    /*display: none;*/
+/*}*/
+.scw-header.clearfix {
+    padding: 15px;
+    width: 100%;
+    background: #0275d8;
+    margin: 0;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 1280px) and (max-width: 1366px) {
+    /*#layout_manager{*/
+        /*width: 80%;*/
+
+    /*}*/
+
+    .vcx_chat_container .frame{ height:43vh;}
+
+}
+@media (min-width: 1180px) and (max-width: 1279px) {
+
+    /*#layout_manager{*/
+        /*width: 75%;*/
+
+    /*}*/
+
+}
+@media (min-width: 1024px) and (max-width: 1179px) {
+    /*#layout_manager{*/
+        /*width: 65%;*/
+
+    /*}*/
+
+
+}
+@media (min-width:768px) and (max-width: 1023px) {
+    /*#layout_manager{*/
+        /*width: 50%;*/
+
+    /*}*/
+    .fixed-footer .footer {
+        margin-left: 220px;
+    }
+}
+@media (min-width: 481px) and (max-width: 767px) {}
+@media (min-width: 320px) and (max-width: 480px)  {
+
+    #stars > li.star > i.fa {
+        font-size:1em; /* Change the size of the stars */
+
+    }
+
+}

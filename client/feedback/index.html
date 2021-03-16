@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <title> Video Conference - Powered by EnableX</title>
+    <link rel="shortcut icon"  href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href='https://fonts.googleapis.com/css?family=Titillium Web' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/minimal/minimal.css">
+    <link rel="stylesheet" href="../assets/plugins/bootstrap4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/plugins/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/core.css">
+    <link rel="stylesheet" href="../css/joinedRoom.css">
+
+
+</head>
+<body class="img-cover">
+<div class="container">
+    <div class="sign-form" style="padding-top: 150px;" !important>
+        <div class="row">
+            <div class="col-md-6 offset-md-3 px-3">
+                <div class="box b-a-0" style="float: left;">
+                    <div class="p-2 text-xs-center">
+                        <img src="../img/enablex.png" style="max-width: 70%"/>
+                    </div>
+
+                    <form class="padd-45">
+
+                        <div class="form-group text-center">
+                            <h5>How was your experience ?</h5>
+                        </div>
+                        <div class='form-group text-center'>
+                            <ul id='stars'>
+                                <li class='star' title='Poor' data-value='1'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Fair' data-value='2'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Good' data-value='3'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='Excellent' data-value='4'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                                <li class='star' title='WOW!!!' data-value='5'>
+                                    <i class='fa fa-star fa-fw'></i>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group " style="margin-top:20px;">
+                            <div class="col-sm-6">
+                                <div class="form-group"><strong>Audio Issues</strong></div>
+                                <div class="form-group  display-flex">
+                                    <input type="checkbox" id="audio_not_present" class="icheck" > <label for="audio_not_present" class="text-black"
+                                                                                                         style="padding-left: 10px;">I could not hear anyone</label>
+                                </div>
+                                <div class="form-group  display-flex" >
+                                    <input type="checkbox" id="audio_was_bad" class="icheck" > <label for="audio_was_bad" class="text-black"
+                                                                                                     style="padding-left: 10px;">Audio Quality was bad</label>
+                                </div>
+
+                                <div class="form-group  display-flex" >
+                                    <input type="checkbox" id="other_participant_not_hear_me" class="icheck" > <label for="other_participant_not_hear_me" class="text-black"
+                                                                                                                     style="padding-left: 10px;">Others could not hear me</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group"><strong>Video Issues</strong></div>
+                                <div class="form-group  display-flex">
+                                    <input type="checkbox" id="video_not_present" class="icheck" > <label class="text-black" for="video_not_present"
+                                                                                                         style="padding-left: 10px;">I could not see anyone</label>
+                                </div>
+                                <div class="form-group  display-flex" >
+                                    <input type="checkbox" id="video_is_bad" class="icheck" > <label class="text-black" for="video_is_bad"
+                                                                                                    style="padding-left: 10px;">Video quality was bad</label>
+                                </div>
+                                <div class="form-group  display-flex" >
+                                    <input type="checkbox" id="other_participant_not_see_me" class="icheck" > <label class="text-black" for="other_participant_not_see_me"
+                                                                                                                    style="padding-left: 10px;">Others could not see me</label>
+                                </div>
+                                <!--<div class="form-group  display-flex" >-->
+                                    <!--<input type="checkbox" id="video_freezing" class="icheck" > <span class="text-black"-->
+                                                                                                      <!--style="padding-left: 10px;">Video was freezing </span>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center"  style="margin-top:20px;/* float: left; */display: inline-block;margin: 15px auto;width: 100%;">
+                            <button id="submitFeedback" class="btn btn-danger w-min-md"  type="button">Submit
+                            </button>
+                            <button id="cancelFeebback" class="btn btn-default w-min-md"  type="button">Skip
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor JS -->
+<script type="text/javascript" src="../assets/plugins/jquery/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/tether/js/tether.min.js"></script>
+<script type="text/javascript" src="../assets/plugins/bootstrap4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.js"></script>
+<script type="text/javascript" src="../assets/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../js/feedback.js"></script>
+
+</body>
+</html>
