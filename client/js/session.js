@@ -80,7 +80,7 @@ var streamShare = null;
 var shareStream = null;
 var shareStart = false;
 var ischatViewOpen = false;
-
+var  arousal_data , valence_data = 0
 EnxRtc.getDevices(function (arg) {
   if (arg.result === 0) {
   } else if (arg.result === 1145) {
@@ -101,7 +101,7 @@ EnxRtc.getDevices(function (arg) {
 
 socket.on("connected", function (data) {
   if (data.success) {
-    clientID = data.success.id;   
+    clientID = data.success.id;
 
     console.log("Panelist data :", user_data);
     if (
@@ -286,7 +286,7 @@ function ConnectCall(token) {
     number_of_attempts: 3,
     timeout_interval: 45000,
   };
-  EnxRtc.Logger.setLogLevel(0);
+  EnxRtc.Logger.setLogLevel(5);
   room = EnxRtc.EnxRoom({ token: token });
   room.connect();
 
@@ -340,6 +340,15 @@ function ConnectCall(token) {
         $(".remote-name").html(ATList[j].name);
 
         console.log(findParticipant(), ATList[j].clientId);
+          if(findParticipant() !== "" && room.roomSettings.facex  && room.roomSettings.facex == true)
+          {
+              document.querySelector(".customer_details_panel").style.display = "block";
+              document.querySelector(".face_ai_tools").style.display = "block";
+          }
+          else {
+              document.querySelector(".customer_details_panel").style.display = "none";
+              document.querySelector(".face_ai_tools").style.display = "none";
+          }
 
         if (findParticipant() === ATList[j].clientId && presentationStarted) {
           if (document.querySelector(`#ss-candidate #box_${ATList[j].clientId}`) === null) {
@@ -353,6 +362,7 @@ function ConnectCall(token) {
             addNameToPlayer(ATList[j].clientId, ATList[j].name);
           }
         }
+
 
         else if (findParticipant() !== ATList[j].clientId) {
           if (document.querySelector(`#call_div #box_${ATList[j].clientId}`) === null) {
@@ -555,6 +565,10 @@ function ConnectCall(token) {
       }
     }
   });
+  room.addEventListener("room-disconnected",function(event){
+      console.log("room-disconnected",event);
+
+  })
 
   room.addEventListener("user-disconnected", function (streamEvent) {
     // socket.emit("disconnect-call", {});
@@ -563,8 +577,20 @@ function ConnectCall(token) {
     if (toRemove) {
       toRemove.remove();
     }
+      if(streamEvent.role == "participant")
+      {
+          document.querySelector(".customer_details_panel").style.display = "none";
+          document.querySelector(".face_ai_tools").style.display = "none";
+      }
 
   });
+  room.addEventListener("user-connected",function(event){
+      if(event.role == "participant" && room.roomSettings.facex  && room.roomSettings.facex == true)
+      {
+        document.querySelector(".customer_details_panel").style.display = "block";
+        document.querySelector(".face_ai_tools").style.display = "block";
+      }
+  })
 
   room.addEventListener("share-started", function (event) {
 
@@ -605,6 +631,42 @@ function ConnectCall(token) {
     streamShare = null;
     document.querySelector('#show_stream_div').innerHTML = "";
   });
+  var data_size = 0
+    room.addEventListener("user-data-received", function (event) {
+        const data = JSON.parse(event.message.message);
+        remoteTrackingData = null;
+        remoteTrackingData = data;
+        const size = new TextEncoder().encode(JSON.stringify(data)).length
+        const kiloBytes = size / 1024;
+        data_size = data_size + kiloBytes
+       console.log("data-recived-size",data_size);
+        // console.log(data);
+        handleRemoteFaceData(remoteTrackingData);
+        //optimizeRemoteData(faceTrackingData);
+        //appendRemoteFaceDetail(data);
+        //console.log(data, "faceTrackingData.......");
+    });
+}
+function startTimer(){
+    var timer = $("#timer");
+
+    function updateTimer() {
+        var myTime = timer.html();
+        var ss = myTime.split(":");
+        var dt = new Date();
+        dt.setHours(0);
+        dt.setMinutes(ss[0]);
+        dt.setSeconds(ss[1]);
+
+        var dt2 = new Date(dt.valueOf() + 1000);
+        var temp = dt2.toTimeString().split(" ");
+        var ts = temp[0].split(":");
+
+        timer.html(ts[1]+":"+ts[2]);
+        setTimeout(updateTimer, 1000);
+    }
+
+    setTimeout(updateTimer, 1000);
 }
 function rejoin() {
   window.location.reload();
@@ -941,3 +1003,348 @@ function inviteCandidate(candidate_id) {
     candidate_id: candidate_id
   }, function (test) { console.log(test) });
 }
+
+var attention_axis_data = 0,
+    happy_data = 0,
+    sad_data = 0,
+    disguest_data = 0,
+    fear_data = 0,
+    surprise_data = 0,
+    angry_data = 0,
+    neutral_data = 0;
+var highest_emotion = "";
+function handleRemoteFaceData(data){
+
+    if(!data){
+        return;
+    }
+    if (data.emotions) {
+        console.table(data.emotions)
+        let highest_emotion_val = sortObject(data.emotions)[0];
+        highest_emotion = getKeyByValue(data.emotions, highest_emotion_val);
+        // document.querySelector("#mood").innerHTML = highest_emotion;
+        if(highest_emotion == 'Angry' || highest_emotion == 'Disgust' || highest_emotion == 'Sad' ||  highest_emotion == 'Fear')
+        {
+            // document.querySelector("#mood").style.backgroundColor = "red";
+        }
+        else
+        {
+            // document.querySelector("#mood").style.backgroundColor = "green";
+        }
+        angry_data = data.emotions.Angry ? data.emotions.Angry : angry_data ;
+        disguest_data = data.emotions.Disgust ? data.emotions.Disgust : disguest_data ;
+        fear_data = data.emotions.Fear ? data.emotions.Fear : fear_data;
+        happy_data = data.emotions.Happy ? data.emotions.Happy : happy_data;
+        sad_data = data.emotions.Sad ? data.emotions.Sad : sad_data;
+        surprise_data = data.emotions.Surprise ? data.emotions.Surprise : surprise_data ;
+        neutral_data = data.emotions.Neutral ? data.emotions.Neutral : neutral_data;
+    }
+
+    if (data.attention >=0) {
+        console.log("Attention",data.attention)
+        if(data.attention >=0 && data.attention <= 30)
+        {
+            attention_axis_data = 0;
+            document.querySelector("#attention").innerHTML = "Low";
+            document.querySelector("#attention").style.backgroundColor = "red";
+        }
+        if(data.attention >=30 && data.attention <= 70)
+        {
+            attention_axis_data = 1;
+            document.querySelector("#attention").innerHTML = "Medium";
+            document.querySelector("#attention").style.backgroundColor = "purple";
+        }
+        if(data.attention >=70 )
+        {
+            attention_axis_data = 2;
+            document.querySelector("#attention").innerHTML = "High";
+            document.querySelector("#attention").style.backgroundColor ="Green"
+        }
+
+    }
+    if (data.gender) {
+        console.log("GENDER",data.gender)
+        document.querySelector("#gender").innerHTML = data.gender
+    }
+    if(data.arousalValence)
+    {
+      arousal_data = (data.arousalValence.arousal && data.arousalValence.arousal > 0)  ? data.arousalValence.arousal : 0;
+      valence_data = (data.arousalValence.valence && data.arousalValence.valence > 0) ? data.arousalValence.valence : 0
+
+    }
+
+    if (data.features) {
+        console.table("feature",data.features);
+
+    }
+    if (data.age) {
+        console.log("AGE",data.age)
+        document.querySelector("#age").innerHTML = data.age;
+    }
+
+
+}
+
+function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+}
+
+const sortObject = obj => {
+    const arr = Object.keys(obj).map(el => {
+        return obj[el];
+});
+    arr.sort((a, b) => {
+        return b-a;
+});
+    return arr;
+};
+
+
+
+// highcharts
+
+var yCategories = ['Low', 'Medium', 'High'];
+Highcharts.chart('attention_chart', {
+    chart: {
+        type: 'spline',
+        animation: Highcharts.svg, // don't animate in old IE
+        marginRight: 10,
+        events: {
+            load: function () {
+                // set up the updating of the chart each second
+                var series = this.series[0];
+                setInterval(function () {
+                    var x = (new Date()).getTime(), // current time
+                        y = attention_axis_data;
+                    series.addPoint([x, y], true, true);
+                }, 1000);
+            }
+        }
+    },
+    title: {
+        text: 'Attention',
+        style: {
+            fontSize: '10px'
+        }
+    },
+    time: {
+        useUTC: false
+    },
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: false
+            }
+        }
+    },
+    xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150,
+        zoomEnabled : false
+    },
+    tooltip:false,
+
+    yAxis: {
+        zoomEnabled : false,
+        title:false,
+        categories : yCategories,
+        plotLines: [{
+            color: 'green', // Color value
+            dashStyle: 'longdashdot', // Style of the plot line. Default to solid
+            value: 1, // Value of where the line will appear
+            width: 2 // Width of the line
+        }]
+    },
+    legend: {
+        enabled: false
+    },
+    exporting: {
+        enabled: false
+    },
+    series: [{
+        data: (function () {
+            // generate an array of random data
+            var data = [],
+                time = (new Date()).getTime(),
+                i;
+            for (i = -19; i <= 0; i += 1) {
+                data.push({
+                    x: time + i * 1000,
+                    y: attention_axis_data
+                });
+            }
+            return data;
+        }())
+    }]
+});
+
+
+window.addEventListener('load', function () {
+
+   function setPolarityData(){
+     setInterval(function(){
+         const date_time = (new Date()).getTime();
+         // const angry = [date_time, angry_data];
+         //const disguest = [date_time, disguest_data];
+         const engagement_data = [date_time, arousal_data];
+         const pleasentness_data = [date_time, valence_data];
+         //const sad = [date_time,sad_data];
+         const surprise = [date_time, surprise_data];
+         //const neutral = [date_time, neutral_data];
+
+         const series = chart2.series[0],
+             shift = series.data.length > 20;
+
+         chart2.series[0].addPoint(engagement_data, true, shift);
+         // chart2.series[1].addPoint(pleasentness_data, true, shift);
+
+     }, 1000);
+   }
+
+    function requestData() {
+
+        setInterval(function () {
+            const date_time = (new Date()).getTime();
+           // const angry = [date_time, angry_data];
+            //const disguest = [date_time, disguest_data];
+            const fear = [date_time, fear_data];
+            const happy = [date_time, happy_data];
+            //const sad = [date_time,sad_data];
+            const surprise = [date_time, surprise_data];
+            //const neutral = [date_time, neutral_data];
+
+            const series = chart.series[0],
+                shift = series.data.length > 20;
+
+            chart.series[0].addPoint(surprise, true, shift);
+            chart.series[1].addPoint(happy, true, shift);
+            chart.series[2].addPoint(fear, true, shift);
+            // chart.series[0].addPoint(angry, true, shift);
+            // chart.series[1].addPoint(disguest, true, shift);
+            // chart.series[2].addPoint(fear, true, shift);
+            // chart.series[3].addPoint(happy, true, shift);
+            // chart.series[4].addPoint(sad, true, shift);
+            // chart.series[5].addPoint(surprise, true, shift);
+            // chart.series[6].addPoint(neutral, true, shift);
+
+        }, 1000);
+    }
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'emotion_chart',
+            defaultSeriesType: 'area',
+            events: {
+                load: requestData
+            }
+        },
+        title: {
+            text: 'Emotions data',
+            style: {
+
+                fontSize: '10px'
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150
+        },
+        plotOptions: {
+            area: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+        yAxis: {
+            labels: {
+                format: '{value}%'
+            },
+            title: {
+                enabled: false
+            }
+        },
+        // legend: false,
+        legend: {
+            itemStyle: {
+                fontSize: "9px"
+            }
+        },
+        series: [
+            {
+                name: 'Surprise',
+                data: []
+            },
+            {
+                name: 'Happy',
+                data: []
+            },
+
+            {
+                name: 'Fear',
+                data: []
+            }
+
+
+        ]
+    });
+
+    chart2 = new Highcharts.Chart({
+        chart: {
+            renderTo: 'polarity_chart',
+            defaultSeriesType: 'spline',
+            events: {
+                load: setPolarityData
+            }
+        },
+        title: {
+            text: 'Polarity data',
+            style: {
+
+                fontSize: '10px'
+            }
+        },
+        tooltip:false,
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150
+        },
+        plotOptions: {
+            area: {
+                marker: {
+                    enabled: false
+                }
+            }
+        },
+        yAxis: {
+            labels: {
+                format: '{value}%'
+            },
+            title: {
+                enabled: false
+            }
+        },
+        // legend: false,
+        legend: {
+            itemStyle: {
+                fontSize: "9px"
+            }
+        },
+        series: [
+            {
+                name: 'Engagement',
+                data: []
+            }
+            // {
+            //     name: 'Pleasantness',
+            //     data: []
+            // }
+
+    //
+    //
+    //
+         ]
+     });
+
+
+});
+

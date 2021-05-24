@@ -22,12 +22,13 @@
   <div class="row" id="call_container_div">
     <div class="call-top-header">
       <div class="logo" style="padding-top: 8px;">
-        <!-- <img src="../img/enableX_logo.png" style="max-width: 160px;" /> -->
+         <!--<img src="../img/Header.jfif" style="min-width: 100vw;" />-->
+         <!--<img src="../img/infi2.png" style="max-width: 125px;" />-->
       </div>
       <!-- <div class="duration">00:00</div> -->
-      <div class="recording-blink" style="display: none;">
-        <div id="rec_notification-1" class="blink-image">
-          <span><i class="fa fa-circle" style="color: red;"></i></span> Rec
+      <div   id="rec_notification" class="recording-blink" style="display:none;position:fixed;top:0px;right:287px">
+        <div style="color:black;" class="blink-image">
+          <span ><i class="fa fa-circle" style="color: red;"></i></span> Rec
         </div>
       </div>
     </div>
@@ -56,7 +57,7 @@
             <div class="video-mute-icon" title="End Call" style="cursor: pointer; background: red;">
               <i class="fas fa-phone fa-fw CBicon" id="disconnect_call" style="margin-left: -20px;"></i>
             </div>
-            <div class="video-mute-icon" id="settings" title="Settings" style="cursor: pointer;">
+            <!-- <div class="video-mute-icon" id="settings" title="Settings" style="cursor: pointer;">
               <div class="btn-group dropup">
                 <i class="fas fa-ellipsis-v" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu p-0 m-0">
@@ -68,7 +69,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -121,11 +122,52 @@
         </div>
       </div>
       <!-- /  -->
+      <div class="customer_details_panel" style="display: none;">
+        <div class="facex-items">
+          <div class="">
+            <p class="text_heading">Gender</p>
+          </div>
+          <div class="">
+            <p class="age_gender_panel"  id="gender"></p>
+          </div>
+        </div>
+        <div class="facex-items  ">
+          <div class="">
+            <p class="text_heading">Age</p>
+          </div>
+          <div class="">
+            <p class="age_gender_panel" id="age">0</p>
+          </div>
+        </div>
 
+        <div class="facex-items">
+          <div class="">
+            <p class="text_heading">Attention</p>
+          </div>
+          <div class="facex-items-value">
+            <p id="attention"></p>
+          </div>
+        </div>
+        <!--<div class="row">-->
+        <!--<div class="col-md-6">-->
+        <!--<div class="text_heading">Mood</div>-->
+        <!--<div id="mood"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+      </div>
+
+      <div class="face_ai_tools" style=" display: none;position: fixed;top:0%;right:21%;">
+
+        <div id="attention_chart"  style="width:300px;height: 150px;margin-bottom: 20px;"></div>
+        <div id="emotion_chart"  style="width:300px;height: 220px;margin-bottom: 20px;"></div>
+        <div id="polarity_chart"  style="width:300px;height: 220px;"></div>
+
+      </div>
     </div>
   </div>
   <script>
-    var server_url = "";
+    var server_url = "https://infosys.vcloudx.com/";
     const searchParams = new URLSearchParams(window.location.search);
     console.log('searchParams: ', searchParams);
 
@@ -147,13 +189,14 @@
   <script type="text/javascript" src="../assets/plugins/jscrollpane/mwheelIntent.js"></script>
   <script type="text/javascript" src="../assets/plugins/toastr/toastr.min.js"></script>
   <script type="text/javascript" src="../js/sweetalert.js"></script>
+  <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
   <script type="text/javascript" src="../js/scrollbar.js"></script>
   <script type="text/javascript" src="../js/icheck.js"></script>
   <script type="text/javascript" src="../js/moment.min.js"></script>
   <script type="text/javascript" src="../js/error.js"></script>
   <script type="text/javascript" src="../js/EnxRtc.js"></script>
   <script type="text/javascript" src="../js/socket.io.js"></script>
-  <script type="text/javascript" src="../js/session.js"></script>
+  <script type="text/javascript" src="../js/session.js?ver=12345"></script>
   <script type="text/javascript" src="../js/util.js"></script>
 </body>
 

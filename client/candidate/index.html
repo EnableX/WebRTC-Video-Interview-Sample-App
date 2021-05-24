@@ -58,11 +58,12 @@
   <div class="row" id="call_container_div">
     <div class="call-top-header">
       <div class="logo" style="padding-top: 8px;">
-        <!-- <img src="../img/enableX_logo.png" style="max-width: 160px;" /> -->
+         <!--<img src="../img/infi2.png" style="max-width: 125px;" />-->
+        <!--<img src="../img/Header.jfif" style="min-width: 100vw;" />-->
       </div>
       <!-- <div class="duration">00:00</div> -->
-      <div class="recording-blink" style="display: none;">
-        <div id="rec_notification-1" class="blink-image">
+      <div id="rec_notification" class="recording-blink" style="display:none;position:fixed;top:0px;right:287px;">
+        <div style="color:black;" class="blink-image">
           <span><i class="fa fa-circle" style="color: red;"></i></span> Rec
         </div>
       </div>
@@ -92,7 +93,7 @@
             <div class="video-mute-icon" title="End Call" style="cursor: pointer; background: red;">
               <i class="fas fa-phone fa-fw CBicon" id="disconnect_call" style="margin-left: -20px;"></i>
             </div>
-            <div class="video-mute-icon" id="settings" title="Settings" style="cursor: pointer;">
+            <!-- <div class="video-mute-icon" id="settings" title="Settings" style="cursor: pointer;">
               <div class="btn-group dropup">
                 <i class="fas fa-ellipsis-v" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu p-0 m-0">
@@ -104,7 +105,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -145,7 +146,7 @@
   </div>
 
   <script>
-    var server_url = ""; // socket url
+    var server_url = "https://infosys.vcloudx.com/";
     const searchParams = new URLSearchParams(window.location.search);
     console.log('searchParams: ', searchParams)
 
@@ -171,11 +172,13 @@
   <script type="text/javascript" src="../js/icheck.js"></script>
   <script type="text/javascript" src="../js/error.js"></script>
   <script type="text/javascript" src="../js/EnxRtc.js"></script>
+  <script type="text/javascript" src="../js/EnxFaceAI.js?v=1.8"></script>
+  <script type="text/javascript" src="../js/EnxFaceCompare.js"></script>
   <script type="text/javascript" src="../js/moment.min.js"></script>
   <script type="text/javascript" src="../js/device-selection.js"></script>
   <script type="text/javascript" src="../js/socket.io.js"></script>
   <script type="text/javascript" src="../js/util.js"></script>
-  <script type="text/javascript" src="../js/customer.js"></script>
+  <script type="text/javascript" src="../js/customer.js?ver=1234"></script>
 </body>
 
 </html>
