@@ -37,7 +37,7 @@ var socket_opt = {
   pingTimeout: 600000,
 };
 
-var socket = io.connect(user_data.sevice, socket_opt);
+var socket = io.connect(user_data.service, socket_opt);
 
 var VideoSize = { HD: [320, 180, 1280, 720], SD: [320, 180, 640, 480] };
 var config = {
